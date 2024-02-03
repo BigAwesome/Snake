@@ -15,7 +15,7 @@ With `npm start` you'll get a web browser displaying the project. Once developme
 The [documentation](https://github.com/BigAwesome/Snake/docs/) can be found [here](https://github.com/BigAwesome/Snake/docs/)
 
 This is the intended process for the game.
-![flow](https://github.com/BigAwesome/Snake/docs/FlowDraft.png)
+![flow](https://github.com/BigAwesome/Snake/blob/master/docs/FlowDraft.png?raw=true)
 
 Documentation of the software architecture and a contribution guid will follow shortly.
 
