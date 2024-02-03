@@ -1,0 +1,56 @@
+/* #1e1818
+#f2f2f2t
+#747369
+#f50000
+#b4c138 */
+#GameCanvasRender {
+    border: #747369 5px solid;
+}
+
+#GameDisplay {
+    place-self: center;
+}
+
+#ScoreDisplay {
+    place-self: center;
+}
+
+#GameWrapper {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+}
+
+.Level {
+    background-color: transparent;
+}
+
+.Level1 {
+    color: #747369;
+    background-color: #b4c138;
+}
+
+.Level2 {
+    color: #747369;
+    background-color: #f2f2f2;
+}
+
+.Level3 {
+    color: #747369;
+    background-color: #f50000;
+}
+
+.Level4 {
+    color: #747369;
+    background-color: #747369;
+}
+
+.Level5 {
+    color: #1e1818;
+    background-color: #1e1818;
+}
+
+.Level6 {
+    color: #747369;
+    background-color: #f2f2f2;
+}
