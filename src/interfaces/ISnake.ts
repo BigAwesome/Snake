@@ -7,4 +7,5 @@ export interface ISnake {
     grow(): void;
     move(): void;
     turn(direction: IVector): void;
+    draw(ctx: CanvasRenderingContext2D): void;
 }

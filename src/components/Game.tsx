@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { IGameProps } from "../interfaces/IGame";
+import Snake from "../model/Snake";
+import Vector from "../model/Vector";
 
 function formatScore(score: number): string {
 
@@ -12,6 +14,7 @@ function formatScore(score: number): string {
 function Game(props: IGameProps) {
 
     const [score, setScore] = useState(0);
+    const [snake, setSnake] = useState(new Snake(new Vector()))
 
     const ref = useRef<HTMLCanvasElement>(null)
 
@@ -21,14 +24,8 @@ function Game(props: IGameProps) {
             if (ref.current) {
                 const ctx = ref.current.getContext('2d');
                 if (!ctx) return;
-                ctx.fillStyle = "#747369";
-                ctx.fillRect(25 + score * 6, 25, 5, 5)
-                // ctx.fillStyle = "red";
-                ctx.fillRect(31 + score * 6, 25, 5, 5)
-                // ctx.fillStyle = "blue";
-                ctx.fillRect(25 + score * 6, 31, 5, 5)
-                // ctx.fillStyle = "yellow";
-                ctx.fillRect(31 + score * 6, 31, 5, 5)
+                snake.draw(ctx)
+                snake.move()
             }
         }, 1000);
 
