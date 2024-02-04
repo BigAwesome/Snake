@@ -18,6 +18,18 @@ function Game(props: IGameProps) {
     useEffect(() => {
         const interval = setInterval(() => {
             setScore(score + 1);
+            if (ref.current) {
+                const ctx = ref.current.getContext('2d');
+                if (!ctx) return;
+                ctx.fillStyle = "#747369";
+                ctx.fillRect(25 + score * 6, 25, 5, 5)
+                // ctx.fillStyle = "red";
+                ctx.fillRect(31 + score * 6, 25, 5, 5)
+                // ctx.fillStyle = "blue";
+                ctx.fillRect(25 + score * 6, 31, 5, 5)
+                // ctx.fillStyle = "yellow";
+                ctx.fillRect(31 + score * 6, 31, 5, 5)
+            }
         }, 1000);
 
         return () => {
@@ -29,12 +41,12 @@ function Game(props: IGameProps) {
         if (ref.current) {
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;
-            ctx.moveTo(0, 0);
-            ctx.lineTo(200, 100);
-            ctx.stroke();
+            // ctx.moveTo(0, 0);
+            // ctx.lineTo(200, 100);
+            // ctx.stroke();
 
-            ctx.fillStyle = "green";
-            ctx.fillRect(25, 25, 100, 100)
+            ctx.fillStyle = "#747369";
+            ctx.fillRect(25, 25, 5, 5)
         }
     }, [])
 
