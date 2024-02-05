@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { DirectionMap } from "../InputBinding";
 import { IGameProps } from "../interfaces/IGame";
 import Snake from "../model/Snake";
 import Vector from "../model/Vector";
-import { IVector } from "../interfaces/IVector";
-import { DirectionMap } from "../InputBinding";
 
 function formatScore(score: number): string {
 
@@ -14,7 +13,7 @@ function formatScore(score: number): string {
 }
 
 
-function eventhandler(e: KeyboardEvent, snake: Snake) {
+function inputHandler(e: KeyboardEvent, snake: Snake) {
     const match: string[] = Object.keys(DirectionMap).filter(dm => dm === e.key || dm === e.key.toUpperCase())
     if (match.length <= 0) return;
     snake.turn(DirectionMap[match[0]]);
@@ -23,9 +22,10 @@ function eventhandler(e: KeyboardEvent, snake: Snake) {
 function Game(props: IGameProps) {
 
     const [score, setScore] = useState(0);
-    const [snake, setSnake] = useState(new Snake(new Vector()))
+    const [snake, setSnake] = useState(new Snake(new Vector(10, 10)))
 
     const ref = useRef<HTMLCanvasElement>(null)
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -33,28 +33,24 @@ function Game(props: IGameProps) {
             if (ref.current) {
                 const ctx = ref.current.getContext('2d');
                 if (!ctx) return;
-                snake.draw(ctx)
+                if (snake.head.x === 10 && snake.head.y === 10) snake.grow()
+                if (snake.head.x === 16 && snake.head.y === 10) snake.grow()
+                if (snake.head.x === 88 && snake.head.y === 10) snake.grow()
+                if (snake.head.x === 94 && snake.head.y === 10) snake.grow()
+                snake.redraw(ctx, props.width, props.height)
                 snake.move()
             }
         }, 1000);
-
+        if (ref.current) {
+            const ctx = ref.current.getContext('2d');
+            if (!ctx) return;
+        }
+        document.addEventListener("keyup", (e: KeyboardEvent) => inputHandler(e, snake));
         return () => {
             clearInterval(interval);
         };
     }, [score]);
 
-    useEffect(() => {
-        if (ref.current) {
-            const ctx = ref.current.getContext('2d');
-            if (!ctx) return;
-            ctx.fillStyle = "#747369";
-            ctx.fillRect(25, 25, 5, 5);
-        }
-    }, [])
-
-    useEffect(() => {
-        document.addEventListener("keyup", (e: KeyboardEvent) => eventhandler(e, snake));
-    }, []);
 
 
     return <div id="GameDisplay">
