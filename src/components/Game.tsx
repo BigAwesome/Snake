@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { IGameProps } from "../interfaces/IGame";
 import Snake from "../model/Snake";
 import Vector from "../model/Vector";
+import { IVector } from "../interfaces/IVector";
+import { DirectionMap } from "../InputBinding";
 
 function formatScore(score: number): string {
 
@@ -9,6 +11,13 @@ function formatScore(score: number): string {
     if (score < 100) return `00${score}`;
     if (score < 1000) return `0${score}`;
     return score.toString();
+}
+
+
+function eventhandler(e: KeyboardEvent, snake: Snake) {
+    const match: string[] = Object.keys(DirectionMap).filter(dm => dm === e.key || dm === e.key.toUpperCase())
+    if (match.length <= 0) return;
+    snake.turn(DirectionMap[match[0]]);
 }
 
 function Game(props: IGameProps) {
@@ -38,14 +47,15 @@ function Game(props: IGameProps) {
         if (ref.current) {
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;
-            // ctx.moveTo(0, 0);
-            // ctx.lineTo(200, 100);
-            // ctx.stroke();
-
             ctx.fillStyle = "#747369";
-            ctx.fillRect(25, 25, 5, 5)
+            ctx.fillRect(25, 25, 5, 5);
         }
     }, [])
+
+    useEffect(() => {
+        document.addEventListener("keyup", (e: KeyboardEvent) => eventhandler(e, snake));
+    }, []);
+
 
     return <div id="GameDisplay">
         <div>{formatScore(score)}</div>

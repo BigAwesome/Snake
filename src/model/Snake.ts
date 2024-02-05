@@ -23,7 +23,7 @@ export default class Snake implements ISnake {
         console.log(this.head);
     }
     turn(direction: IVector): void {
-        throw new Error("Method not implemented.");
+        this.direction = direction;
     }
     draw(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = "#747369";
