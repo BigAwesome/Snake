@@ -22,3 +22,8 @@ Documentation of the software architecture and a contribution guid will follow s
 ### Adding media
 For now the folder [\src\assets\videos](https://github.com/BigAwesome/Snake/tree/master/src/assets/videos/) is intended to hold the videos. 
 Online media (like youtube) could also be used.
+
+
+## Testing 
+
+[To a demo](https://bigawesome.github.io/Snake/build/)
