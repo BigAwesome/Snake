@@ -43,7 +43,7 @@ function Game(props: IGameProps) {
                 snake.redraw(ctx, props.width, props.height)
                 apple.draw(ctx)
             }
-        }, 1000);
+        }, 200);
         if (ref.current) {
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;
