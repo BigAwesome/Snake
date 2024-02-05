@@ -3,6 +3,7 @@ import { DirectionMap } from "../InputBinding";
 import { IGameProps } from "../interfaces/IGame";
 import Snake from "../model/Snake";
 import Vector from "../model/Vector";
+import Apple from "../model/Apple";
 
 function formatScore(score: number): string {
 
@@ -22,23 +23,25 @@ function inputHandler(e: KeyboardEvent, snake: Snake) {
 function Game(props: IGameProps) {
 
     const [score, setScore] = useState(0);
-    const [snake, setSnake] = useState(new Snake(new Vector(10, 10)))
+    const [snake] = useState(new Snake(new Vector(10, 10)))
+    const [apple, setApple] = useState(new Apple(new Vector(props.width, props.height)))
 
     const ref = useRef<HTMLCanvasElement>(null)
 
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setScore(score + 1);
+            setScore(snake.body.length);
             if (ref.current) {
                 const ctx = ref.current.getContext('2d');
                 if (!ctx) return;
-                if (snake.head.x === 10 && snake.head.y === 10) snake.grow()
-                if (snake.head.x === 16 && snake.head.y === 10) snake.grow()
-                if (snake.head.x === 88 && snake.head.y === 10) snake.grow()
-                if (snake.head.x === 94 && snake.head.y === 10) snake.grow()
-                snake.redraw(ctx, props.width, props.height)
+                if (Math.abs(apple.position.x - snake.head.x) <= 6 && Math.abs(apple.position.y - snake.head.y) <= 6) {
+                    setApple(new Apple(new Vector(props.width, props.height)));
+                    snake.grow()
+                }
                 snake.move()
+                snake.redraw(ctx, props.width, props.height)
+                apple.draw(ctx)
             }
         }, 1000);
         if (ref.current) {

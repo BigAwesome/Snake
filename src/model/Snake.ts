@@ -1,6 +1,6 @@
 import { ISnake } from "../interfaces/ISnake";
 import { IVector } from "../interfaces/IVector";
-import { SnakeColor } from "../levelBindings";
+import { GameColors } from "../levelBindings";
 import Vector from "./Vector";
 
 export default class Snake implements ISnake {
@@ -9,7 +9,7 @@ export default class Snake implements ISnake {
     private _head: IVector;
     private _body: IVector[];
 
-    private _color: SnakeColor;
+    private _color: GameColors;
 
     private _scale: number = 5;
 
@@ -19,7 +19,7 @@ export default class Snake implements ISnake {
         this._head = new Vector(start.x, start.y)
         this._direction = direction ? direction : new Vector(1, 0)
         this._body = [this._head]
-        this._color = SnakeColor.First;
+        this._color = GameColors.First;
     }
 
     public get direction(): IVector {
@@ -40,10 +40,10 @@ export default class Snake implements ISnake {
     public set body(v: IVector[]) {
         this._body = v;
     }
-    public get color(): SnakeColor {
+    public get color(): GameColors {
         return this._color;
     }
-    public set color(v: SnakeColor) {
+    public set color(v: GameColors) {
         this._color = v;
     }
     public get scale(): number {
@@ -57,15 +57,15 @@ export default class Snake implements ISnake {
         this.body.push(new Vector(this.head.x, this.head.y))
     }
     move(): void {
-        //TODO: Do propper movement
-        if (this.body.length <= 1) return;
-        for (let index = this.body.length - 1; index > 0; index--) {
-            console.log(index);
-            if (index === 0) return;
-            const bodypart = this.body[index];
-            bodypart.x = this.body[index - 1].x
-            bodypart.y = this.body[index - 1].y
+        if (this.body.length > 1) {
+            for (let index = this.body.length - 1; index > 0; index--) {
+                console.log(index);
+                if (index === 0) return;
+                const bodypart = this.body[index];
+                bodypart.x = this.body[index - 1].x
+                bodypart.y = this.body[index - 1].y
 
+            }
         }
         this.head.x += this.direction.x * (this.scale + 1)
         this.head.y += this.direction.y * (this.scale + 1)

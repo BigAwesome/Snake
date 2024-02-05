@@ -1,15 +1,13 @@
-import { SnakeColor } from "../levelBindings";
+import { GameColors } from "../levelBindings";
+import { IRenderable } from "./IRenderable";
 import { IVector } from "./IVector";
 
-export interface ISnake {
+export interface ISnake extends IRenderable {
     direction: IVector;
     head: IVector;
     body: IVector[];
-    color: SnakeColor;
-    scale: number;
+    color: GameColors;
     grow(): void;
     move(): void;
     turn(direction: IVector): void;
-    draw(ctx: CanvasRenderingContext2D): void;
-    redraw(ctx: CanvasRenderingContext2D, width?: number, height?: number): void;
 }
