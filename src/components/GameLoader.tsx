@@ -20,7 +20,7 @@ function GameLoader(props: IGameLoaderProps) {
                 <div className="LevelLabel">Level {level - 1} Video</div>
                 <div id="VideoDisplay">
                     <div id="NextLevelBtn"><button title="Next Level" onClick={() => { setVideo(false); }}>X</button></div>
-                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Rick Astley - Never Gonna Give You Up (Official Music Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                    <iframe width={props.game?.width} height={props.game?.height} src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Rick Astley - Never Gonna Give You Up (Official Music Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 </div>
             </div>
 
