@@ -71,6 +71,8 @@ export default class Snake implements ISnake {
         this.head.y += this.direction.y * (this.scale + 1)
     }
     turn(direction: IVector): void {
+        if (this.direction.x == 1 && direction.x == -1 || this.direction.x == -1 && direction.x == 1) return // Horizontal 180 flip
+        if (this.direction.y == 1 && direction.y == -1 || this.direction.y == -1 && direction.y == 1) return // Vertical 180 flip
         this.direction = direction;
     }
     redraw(ctx: CanvasRenderingContext2D, width?: number, height?: number): void {
@@ -79,17 +81,10 @@ export default class Snake implements ISnake {
     }
     draw(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = this.color;
-        // ctx.fillRect(this.head.x, this.head.y, 5, 5)
         // Render entire body
         this.body.forEach(bp => {
             ctx.fillRect(bp.x, bp.y, this.scale, this.scale)
         })
-        // ctx.fillStyle = "red";
-        // ctx.fillRect(31 + score * 6, 25, 5, 5)
-        // // ctx.fillStyle = "blue";
-        // ctx.fillRect(25 + score * 6, 31, 5, 5)
-        // // ctx.fillStyle = "yellow";
-        // ctx.fillRect(31 + score * 6, 31, 5, 5)
     }
 
 
