@@ -52,8 +52,8 @@ function Game(props: IGameProps) {
                 }
                 snake.move()
                 if (enforceBorder(props, snake)) {
-                    if (props.onFail)
-                        props.onFail()
+                    if (props.onComplete)
+                        props.onComplete()
                     else throw new Error("Game Over but no screen defined")
                 }
                 snake.redraw(ctx, props.width, props.height)

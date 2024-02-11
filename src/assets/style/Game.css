@@ -7,7 +7,8 @@
     border: #747369 5px solid;
 }
 
-#GameDisplay {
+#GameDisplay,
+#VideoDisplay {
     place-self: center;
 }
 
@@ -15,10 +16,15 @@
     place-self: center;
 }
 
-#GameWrapper {
+#GameWrapper,
+#VideoWrapper {
     width: 100%;
     height: 100vh;
     display: grid;
+}
+
+#NextLevelBtn {
+    margin: 5px;
 }
 
 .Level {
