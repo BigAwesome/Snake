@@ -13,13 +13,14 @@ export default class Snake implements ISnake {
 
     private _scale: number = 5;
 
+    private _onSelfCollision: Function;
 
-
-    constructor(start: IVector, direction?: IVector) {
+    constructor(start: IVector, onSelfCollision: () => void, direction?: IVector) {
         this._head = new Vector(start.x, start.y)
         this._direction = direction ? direction : new Vector(1, 0)
         this._body = [this._head]
         this._color = GameColors.First;
+        this._onSelfCollision = onSelfCollision
     }
 
     public get direction(): IVector {
@@ -52,22 +53,27 @@ export default class Snake implements ISnake {
     public set scale(v: number) {
         this._scale = v;
     }
+
     grow(): void {
-        this.body.push(new Vector(this.head.x, this.head.y))
+        this.body.push(new Vector(this.body[this._body.length - 1].x, this.body[this._body.length - 1].y))
     }
     move(): void {
-        if (this.body.length > 1) {
-            for (let index = this.body.length - 1; index > 0; index--) {
-                console.log(index);
-                if (index === 0) return;
-                const bodypart = this.body[index];
-                bodypart.x = this.body[index - 1].x
-                bodypart.y = this.body[index - 1].y
-
-            }
-        }
         this.head.x += this.direction.x * (this.scale + 1)
         this.head.y += this.direction.y * (this.scale + 1)
+        if (this.body.length <= 1) {
+            return
+        }
+        for (let index = this.body.length - 1; index > 0; index--) {
+            if (index === 0) return;
+            const bodypart = this.body[index];
+            if (bodypart.x == this.head.x && bodypart.y == this.head.y) return this._onSelfCollision()
+            bodypart.x = this.body[index - 1].x
+            bodypart.y = this.body[index - 1].y
+
+        }
+
+
+
     }
     turn(direction: IVector): void {
         if (this.direction.x == 1 && direction.x == -1 || this.direction.x == -1 && direction.x == 1) return // Horizontal 180 flip
@@ -75,6 +81,7 @@ export default class Snake implements ISnake {
         this.direction = direction;
     }
     redraw(ctx: CanvasRenderingContext2D, width?: number, height?: number): void {
+        console.log(this.head.x);
         ctx.clearRect(0, 0, width ? width : 100, height ? height : 100);
         this.draw(ctx)
     }
@@ -82,6 +89,7 @@ export default class Snake implements ISnake {
         ctx.fillStyle = this.color;
         // Render entire body
         this.body.forEach(bp => {
+            console.log(bp);
             ctx.fillRect(bp.x, bp.y, this.scale, this.scale)
         })
     }

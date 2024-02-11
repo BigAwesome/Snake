@@ -30,9 +30,11 @@ function enforceBorder(props: IGameProps, snake: Snake): boolean {
 
 
 function Game(props: IGameProps) {
+    const randomVector = new Vector(Math.floor(Math.random() * (props.width ? props.width : 10)), Math.floor(Math.random() * (props.height ? props.height : 10)));
+
 
     const [score, setScore] = useState(0);
-    const [snake] = useState(new Snake(new Vector(Math.random() * (props.width ? props.width : 10), Math.random() * (props.height ? props.height : 10))))
+    const [snake] = useState(new Snake(randomVector, () => props.onFail ? props.onFail() : null))
     const [apple, setApple] = useState(new Apple(new Vector(props.width, props.height)))
 
     const ref = useRef<HTMLCanvasElement>(null)
@@ -49,7 +51,6 @@ function Game(props: IGameProps) {
                     snake.grow()
                 }
                 snake.move()
-                console.log(snake.head);
                 if (enforceBorder(props, snake)) {
                     if (props.onFail)
                         props.onFail()
