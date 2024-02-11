@@ -20,10 +20,19 @@ function inputHandler(e: KeyboardEvent, snake: Snake) {
     snake.turn(DirectionMap[match[0]]);
 }
 
+function enforceBorder(props: IGameProps, snake: Snake): boolean {
+    if (snake.head.x < 0 || snake.head.y < 0) return true
+    if (props.width && snake.head.x > (props.width - 5)) return true
+    if (props.height && snake.head.y > (props.height - 5)) return true
+
+    return false
+}
+
+
 function Game(props: IGameProps) {
 
     const [score, setScore] = useState(0);
-    const [snake] = useState(new Snake(new Vector(10, 10)))
+    const [snake] = useState(new Snake(new Vector(Math.random() * (props.width ? props.width : 10), Math.random() * (props.height ? props.height : 10))))
     const [apple, setApple] = useState(new Apple(new Vector(props.width, props.height)))
 
     const ref = useRef<HTMLCanvasElement>(null)
@@ -40,6 +49,12 @@ function Game(props: IGameProps) {
                     snake.grow()
                 }
                 snake.move()
+                console.log(snake.head);
+                if (enforceBorder(props, snake)) {
+                    if (props.onFail)
+                        props.onFail()
+                    else throw new Error("Game Over but no screen defined")
+                }
                 snake.redraw(ctx, props.width, props.height)
                 apple.draw(ctx)
             }

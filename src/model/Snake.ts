@@ -52,7 +52,6 @@ export default class Snake implements ISnake {
     public set scale(v: number) {
         this._scale = v;
     }
-
     grow(): void {
         this.body.push(new Vector(this.head.x, this.head.y))
     }
