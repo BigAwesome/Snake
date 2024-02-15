@@ -63,6 +63,7 @@ function Game(props: IGameProps) {
                     props.onComplete()
                 else throw new Error("Game Over but no screen defined")
             }
+            // snake.grow() // TODO: remove. only for testing!
             snake.redraw(ctx, props.width, props.height)
             apple.draw(ctx)
 

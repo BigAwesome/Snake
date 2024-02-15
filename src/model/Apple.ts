@@ -40,7 +40,6 @@ export default class Apple implements IApple {
 
     draw(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = this.color;
-        // ctx.fillRect(this.head.x, this.head.y, 5, 5)
         // Render entire body
         ctx.fillRect(this.position.x - this.scale / 2, this.position.y - this.scale / 2, this.scale, this.scale)
 

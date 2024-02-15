@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IGameLoaderProps } from "../interfaces/IGameLoader";
 import Game from "./Game";
+import KillScreen from "./Game/KillScreen";
 
 function GameLoader(props: IGameLoaderProps) {
     const [level, setLevel] = useState(1);
@@ -8,12 +9,9 @@ function GameLoader(props: IGameLoaderProps) {
     const [video, setVideo] = useState(false);
     const [trys, setTrys] = useState(1);
 
+
     if (reset) {
-        setReset(false)
-        setTrys(trys + 1)
-        return <>
-            Loading...
-        </>
+        return (<div id="GameWrapper" key={level + " " + trys} className={" Level" + level}><KillScreen setReset={setReset} setTrys={setTrys} trys={trys} /></div>)
     } else {
         if (video)
             return <div id="VideoWrapper" key={level + " " + trys} className={" Level" + (level - 1)}>

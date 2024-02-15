@@ -1,1 +1,1 @@
-export const globalScaleFactor = 6;
+export const globalScaleFactor = 12;
