@@ -7,6 +7,7 @@ export interface ISnake extends IRenderable {
     head: IVector;
     body: IVector[];
     color: GameColors;
+    frozen: boolean;
     grow(): void;
     move(): void;
     turn(direction: IVector): void;

@@ -1,3 +1,4 @@
+import { globalScaleFactor } from "../config";
 import { ISnake } from "../interfaces/ISnake";
 import { IVector } from "../interfaces/IVector";
 import { GameColors } from "../levelBindings";
@@ -9,9 +10,11 @@ export default class Snake implements ISnake {
     private _head: IVector;
     private _body: IVector[];
 
+    private _frozen: boolean;
+
     private _color: GameColors;
 
-    private _scale: number = 5;
+    private _scale: number = globalScaleFactor;
 
     private _onSelfCollision: Function;
 
@@ -21,8 +24,18 @@ export default class Snake implements ISnake {
         this._body = [this._head]
         this._color = GameColors.First;
         this._onSelfCollision = onSelfCollision
+        this._head.x -= this._head.x % this._scale
+        this._head.y -= this._head.y % this._scale
+        this._frozen = false;
+        if (this._head.x <= 0) this._head.x = this._scale
+        if (this._head.y <= 0) this._head.y = this._scale
     }
-
+    public get frozen(): boolean {
+        return this._frozen;
+    }
+    public set frozen(v: boolean) {
+        this._frozen = v;
+    }
     public get direction(): IVector {
         return this._direction;
     }
@@ -58,8 +71,9 @@ export default class Snake implements ISnake {
         this.body.push(new Vector(this.body[this._body.length - 1].x, this.body[this._body.length - 1].y))
     }
     move(): void {
-        this.head.x += this.direction.x * (this.scale + 1)
-        this.head.y += this.direction.y * (this.scale + 1)
+        if (this._frozen) return;
+        this.head.x += this.direction.x * (this.scale)
+        this.head.y += this.direction.y * (this.scale)
         if (this.body.length <= 1) {
             return
         }
@@ -71,9 +85,6 @@ export default class Snake implements ISnake {
             bodypart.y = this.body[index - 1].y
 
         }
-
-
-
     }
     turn(direction: IVector): void {
         if (this.direction.x == 1 && direction.x == -1 || this.direction.x == -1 && direction.x == 1) return // Horizontal 180 flip
@@ -81,7 +92,6 @@ export default class Snake implements ISnake {
         this.direction = direction;
     }
     redraw(ctx: CanvasRenderingContext2D, width?: number, height?: number): void {
-        console.log(this.head.x);
         ctx.clearRect(0, 0, width ? width : 100, height ? height : 100);
         this.draw(ctx)
     }
@@ -89,8 +99,7 @@ export default class Snake implements ISnake {
         ctx.fillStyle = this.color;
         // Render entire body
         this.body.forEach(bp => {
-            console.log(bp);
-            ctx.fillRect(bp.x, bp.y, this.scale, this.scale)
+            ctx.fillRect(bp.x - this.scale / 2, bp.y - this.scale / 2, this.scale, this.scale)
         })
     }
 
