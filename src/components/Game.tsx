@@ -1,31 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { DirectionMap } from "../InputBinding";
 import { IGameProps } from "../interfaces/IGame";
+import Apple from "../model/Apple";
 import Snake from "../model/Snake";
 import Vector from "../model/Vector";
-import Apple from "../model/Apple";
+import { enforceBorder, formatScore, inputHandler } from "../model/Utils";
 
-function formatScore(score: number): string {
-    if (score < 10) return `000${score}`;
-    if (score < 100) return `00${score}`;
-    if (score < 1000) return `0${score}`;
-    return score.toString();
-}
-
-
-function inputHandler(e: KeyboardEvent, snake: Snake) {
-    const match: string[] = Object.keys(DirectionMap).filter(dm => dm === e.key || dm === e.key.toUpperCase())
-    if (match.length <= 0) return;
-    snake.turn(DirectionMap[match[0]]);
-}
-
-function enforceBorder(props: IGameProps, snake: Snake): boolean {
-    if (snake.head.x < 0 || snake.head.y < 0) return true
-    if (props.width && snake.head.x > (props.width - snake.scale)) return true
-    if (props.height && snake.head.y > (props.height - snake.scale)) return true
-
-    return false
-}
 
 
 function Game(props: IGameProps) {
@@ -78,12 +57,13 @@ function Game(props: IGameProps) {
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;
         }
-        document.addEventListener("keyup", (e: KeyboardEvent) => inputHandler(e, snake));
+        document.addEventListener("keyup", (e: KeyboardEvent) => {
+            snake.turn(inputHandler(e))
+        });
         return () => {
             clearInterval(interval);
         };
     }, [score]);
-
 
 
     return <div id="GameDisplay">

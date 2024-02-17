@@ -84,11 +84,14 @@ export default class Snake implements ISnake {
         }
         this.head.x += this.direction.x * (this.scale)
         this.head.y += this.direction.y * (this.scale)
-        if (this.body.filter(bp => bp.x === this.head.x && bp.y === this.head.y).length != 1) return this._onSelfCollision()
+        if (this.body.filter(bp => bp.x === this.head.x && bp.y === this.head.y).length !== 1) return this._onSelfCollision()
     }
     turn(direction: IVector): void {
-        if (this.direction.x == 1 && direction.x == -1 || this.direction.x == -1 && direction.x == 1) return // Horizontal 180 flip
-        if (this.direction.y == 1 && direction.y == -1 || this.direction.y == -1 && direction.y == 1) return // Vertical 180 flip
+        if (direction.x === 0 && direction.y === 0) return;
+        if (this.direction.x === 1 && direction.x === -1) return // Horizontal 180 flip
+        if (this.direction.x === -1 && direction.x === 1) return // Horizontal 180 flip
+        if (this.direction.y === 1 && direction.y === -1) return // Vertical 180 flip
+        if (this.direction.y === -1 && direction.y === 1) return // Vertical 180 flip
         this.direction = direction;
     }
     redraw(ctx: CanvasRenderingContext2D, width?: number, height?: number): void {

@@ -4,11 +4,22 @@ import Game from "./Game";
 import KillScreen from "./Game/KillScreen";
 
 function GameLoader(props: IGameLoaderProps) {
+
     const [level, setLevel] = useState(1);
     const [reset, setReset] = useState(false);
     const [video, setVideo] = useState(false);
     const [trys, setTrys] = useState(1);
 
+
+    const settings = {
+        width: props.game?.width,
+        height: props.game?.height,
+        onComplete: () => {
+            setLevel(level + 1);
+            setVideo(true);
+        },
+        onFail: () => { setReset(true) }
+    }
 
     if (reset) {
         return (<div id="GameWrapper" key={level + " " + trys} className={" Level" + level}><KillScreen setReset={setReset} setTrys={setTrys} trys={trys} /></div>)
@@ -24,7 +35,7 @@ function GameLoader(props: IGameLoaderProps) {
 
         return <div id="GameWrapper" key={level + " " + trys} className={" Level" + level}>
             <div className="LevelLabel">Level {level}</div>
-            <Game width={props.game?.width} height={props.game?.height} onComplete={() => { setLevel(level + 1); setVideo(true); }} onFail={() => { setReset(true) }} />
+            <Game {...settings} />
         </div>
     }
 }
