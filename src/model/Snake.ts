@@ -69,22 +69,22 @@ export default class Snake implements ISnake {
 
     grow(): void {
         this.body.push(new Vector(this.body[this._body.length - 1].x, this.body[this._body.length - 1].y))
+        if (this._body.length === 2) {
+            this.body[1].x -= this.direction.x * (this.scale)
+            this.body[1].y -= this.direction.x * (this.scale)
+        }
     }
     move(): void {
         if (this._frozen) return;
+        for (let index = this.body.length - 1; index > 0; index--) {
+            const bodypart = this.body[index];
+            if (bodypart === this.head) continue;
+            this.body[index].x = this.body[index - 1].x
+            this.body[index].y = this.body[index - 1].y
+        }
         this.head.x += this.direction.x * (this.scale)
         this.head.y += this.direction.y * (this.scale)
-        if (this.body.length <= 1) {
-            return
-        }
-        for (let index = this.body.length - 1; index > 0; index--) {
-            if (index === 0) return;
-            const bodypart = this.body[index];
-            if (bodypart.x == this.head.x && bodypart.y == this.head.y) return this._onSelfCollision()
-            bodypart.x = this.body[index - 1].x
-            bodypart.y = this.body[index - 1].y
-
-        }
+        if (this.body.filter(bp => bp.x === this.head.x && bp.y === this.head.y).length != 1) return this._onSelfCollision()
     }
     turn(direction: IVector): void {
         if (this.direction.x == 1 && direction.x == -1 || this.direction.x == -1 && direction.x == 1) return // Horizontal 180 flip

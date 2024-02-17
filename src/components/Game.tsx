@@ -68,7 +68,6 @@ function Game(props: IGameProps) {
             apple.draw(ctx)
 
             if (!food && Math.abs(apple.position.x - snake.head.x) < snake.scale && Math.abs(apple.position.y - snake.head.y) < snake.scale) {
-                console.log("food");
                 snake.frozen = true;
                 setFood(true)
             }
