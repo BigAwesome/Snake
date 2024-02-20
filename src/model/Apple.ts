@@ -11,13 +11,15 @@ export default class Apple implements IApple {
     private _color: GameColors = GameColors.Secound;
 
 
-    constructor(mapSize?: IVector, position?: IVector) {
+    constructor(mapSize?: IVector, color?: GameColors, position?: IVector) {
         if (!mapSize && !position) throw new Error("Requires eigther mapSize or position to work!");
         this._position = position ? position : new Vector(Math.random() * mapSize!.x, Math.random() * mapSize!.y)
         this._position.x -= this._position.x % this._scale
         this._position.y -= this._position.y % this._scale
         if (this._position.x <= 0) this._position.x = this._scale
         if (this._position.y <= 0) this._position.y = this._scale
+
+        this._color = color ? color : GameColors.Secound
     }
     public get position(): IVector {
         return this._position;

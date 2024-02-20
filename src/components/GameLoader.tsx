@@ -21,7 +21,6 @@ function GameLoader(props: IGameLoaderProps) {
         },
         onFail: () => { setReset(true) }
     }
-    console.log(level);
     const Game = Levels[level]
 
     if (!Object.keys(Levels).includes(level.toString())) {
