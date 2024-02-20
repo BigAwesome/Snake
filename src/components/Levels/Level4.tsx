@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { IGameProps } from "../interfaces/IGame";
-import Apple from "../model/Apple";
-import Snake from "../model/Snake";
-import Vector from "../model/Vector";
-import { enforceBorder, formatScore, inputHandler } from "../model/Utils";
+import { IGameProps } from "../../interfaces/IGame";
+import Apple from "../../model/Apple";
+import Snake from "../../model/Snake";
+import Vector from "../../model/Vector";
+import { enforceBorder, formatScore, inputHandler } from "../../model/Utils";
 
 
 
-function Game(props: IGameProps) {
+function Level4(props: IGameProps) {
     const randomVector = new Vector(Math.floor(Math.random() * (props.width ? props.width : 10)), Math.floor(Math.random() * (props.height ? props.height : 10)));
 
 
@@ -71,4 +71,4 @@ function Game(props: IGameProps) {
         <canvas id="GameCanvasRender" ref={ref} width={props.width} height={props.height} />
     </div>
 }
-export default Game;
+export default Level4;

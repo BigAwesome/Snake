@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { IGameLoaderProps } from "../interfaces/IGameLoader";
-import Game from "./Game";
 import KillScreen from "./Game/KillScreen";
+import { Levels } from "../config";
+
 
 function GameLoader(props: IGameLoaderProps) {
 
@@ -20,6 +21,12 @@ function GameLoader(props: IGameLoaderProps) {
         },
         onFail: () => { setReset(true) }
     }
+    console.log(level);
+    const Game = Levels[level]
+
+    if (!Object.keys(Levels).includes(level.toString())) {
+        return (<div id="GameWrapper" key={level + " " + trys} className={" Level" + level}>Selected Level invalid! <button onClick={() => setLevel(1)}>Go back?</button></div>)
+    }
 
     if (reset) {
         return (<div id="GameWrapper" key={level + " " + trys} className={" Level" + level}><KillScreen setReset={setReset} setTrys={setTrys} trys={trys} /></div>)
@@ -32,7 +39,6 @@ function GameLoader(props: IGameLoaderProps) {
                     <iframe width={props.game?.width} height={props.game?.height} src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Rick Astley - Never Gonna Give You Up (Official Music Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 </div>
             </div>
-
         return <div id="GameWrapper" key={level + " " + trys} className={" Level" + level}>
             <div className="LevelLabel">Level {level}</div>
             <Game {...settings} />
