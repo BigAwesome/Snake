@@ -19,8 +19,29 @@ function Level2(props: IGameProps) {
     const [decoys, setDecoys] = useState([] as IApple[])
     const [food, setFood] = useState(false)
     const [cleard, setCleard] = useState(false)
+    const [move, setMove] = useState(false)
+
+
 
     const ref = useRef<HTMLCanvasElement>(null)
+
+
+    //Add controls
+    useEffect(() => {
+        document.addEventListener("keydown", (e: KeyboardEvent) => {
+            setMove(true)
+            snake.direction = inputHandler(e)
+            setScore(snake.body.length);
+        });
+        document.addEventListener("keyup", (e: KeyboardEvent) => {
+            snake.direction = inputHandler(e)
+            setMove(false)
+            setScore(snake.body.length);
+        });
+
+    }, []);
+
+
 
     //Getting decoy food behaviour
     useEffect(() => {
@@ -62,19 +83,18 @@ function Level2(props: IGameProps) {
 
     //Game "ticks" running main loop
     useEffect(() => {
+        setScore(snake.body.length);
         const interval = setInterval(() => {
-            setScore(snake.body.length);
+            if (move) snake.move()
             if (!ref.current) return
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;
-            snake.move()
 
             if (enforceBorder(props, snake)) {
                 if (props.onComplete)
-                    props.onComplete()
+                    return props.onComplete()
                 else throw new Error("Game Over but no screen defined")
             }
-            // snake.grow() // TODO: remove. only for testing!
             snake.redraw(ctx, props.width, props.height)
             apple.draw(ctx)
 
@@ -99,14 +119,10 @@ function Level2(props: IGameProps) {
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;
         }
-        document.addEventListener("keyup", (e: KeyboardEvent) => {
-            snake.turn(inputHandler(e))
-        });
         return () => {
             clearInterval(interval);
         };
-    }, [score]);
-
+    });
 
     return <div id="GameDisplay">
         <div>{formatScore(score)}</div>
