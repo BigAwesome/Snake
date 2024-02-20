@@ -6,7 +6,7 @@ import { Levels } from "../config";
 
 function GameLoader(props: IGameLoaderProps) {
 
-    const [level, setLevel] = useState(1);
+    const [level, setLevel] = useState(1); //TODO: reset to 1 after testing 
     const [reset, setReset] = useState(false);
     const [video, setVideo] = useState(false);
     const [trys, setTrys] = useState(1);
@@ -21,11 +21,10 @@ function GameLoader(props: IGameLoaderProps) {
         },
         onFail: () => { setReset(true) }
     }
-    const Game = Levels[level]
-
     if (!Object.keys(Levels).includes(level.toString())) {
         return (<div id="GameWrapper" key={level + " " + trys} className={" Level" + level}>Selected Level invalid! <button onClick={() => setLevel(1)}>Go back?</button></div>)
     }
+    const Game = Levels[level]
 
     if (reset) {
         return (<div id="GameWrapper" key={level + " " + trys} className={" Level" + level}><KillScreen setReset={setReset} setTrys={setTrys} trys={trys} /></div>)
