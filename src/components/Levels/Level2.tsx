@@ -1,31 +1,30 @@
 import { useEffect, useRef, useState } from "react";
-import { IGameProps } from "../interfaces/IGame";
-import Apple from "../model/Apple";
-import Snake from "../model/Snake";
-import { enforceBorder, formatScore, inputHandler } from "../model/Utils";
-import Vector from "../model/Vector";
+import { ILevelProps } from "../../interfaces/ILevel";
+import { enforceBorder, formatScore, inputHandler } from "../../model/Utils";
+import Vector from "../../model/Vector";
+import Snake from "../../model/Snake";
+import Apple from "../../model/Apple";
 
-
-
-function Game(props: IGameProps) {
+function Level2(props: ILevelProps) {
     const randomVector = new Vector(Math.floor(Math.random() * (props.width ? props.width : 10)), Math.floor(Math.random() * (props.height ? props.height : 10)));
 
 
     const [score, setScore] = useState(0);
     const [snake] = useState(new Snake(randomVector, () => props.onFail ? props.onFail() : null))
     const [apple, setApple] = useState(new Apple(new Vector(props.width, props.height)))
-    const [eating, setEating] = useState(false)
+    const [food, setFood] = useState(false)
 
     const ref = useRef<HTMLCanvasElement>(null)
 
     //Getting food behaviour
     useEffect(() => {
-        if (eating) {
+        if (food) {
             setApple(new Apple(new Vector(props.width, props.height)));
             snake.grow()
+            snake.frozen = false;
         }
-        setEating(false)
-    }, [eating])
+        setFood(false)
+    }, [food])
 
     //Game "ticks" running main loop
     useEffect(() => {
@@ -45,8 +44,9 @@ function Game(props: IGameProps) {
             snake.redraw(ctx, props.width, props.height)
             apple.draw(ctx)
 
-            if (!eating && Math.abs(apple.position.x - snake.head.x) < snake.scale && Math.abs(apple.position.y - snake.head.y) < snake.scale) {
-                setEating(true)
+            if (!food && Math.abs(apple.position.x - snake.head.x) < snake.scale && Math.abs(apple.position.y - snake.head.y) < snake.scale) {
+                snake.frozen = true;
+                setFood(true)
             }
 
 
@@ -69,4 +69,4 @@ function Game(props: IGameProps) {
         <canvas id="GameCanvasRender" ref={ref} width={props.width} height={props.height} />
     </div>
 }
-export default Game;
+export default Level2;
