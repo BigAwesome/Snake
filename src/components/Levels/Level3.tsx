@@ -4,6 +4,8 @@ import Apple from "../../model/Apple";
 import Snake from "../../model/Snake";
 import Vector from "../../model/Vector";
 import { enforceBorder, formatScore, inputHandler } from "../../model/Utils";
+import { GameColors } from "../../levelBindings";
+import { IApple } from "../../interfaces/IApple";
 
 
 
@@ -13,7 +15,7 @@ function Level3(props: IGameProps) {
 
     const [score, setScore] = useState(0);
     const [snake] = useState(new Snake(randomVector, () => props.onFail ? props.onFail() : null))
-    const [apple, setApple] = useState(new Apple(new Vector(props.width, props.height)))
+    const [apples, setApples] = useState([] as IApple[])
     const [food, setFood] = useState(false)
 
     const ref = useRef<HTMLCanvasElement>(null)
@@ -21,7 +23,13 @@ function Level3(props: IGameProps) {
     //Getting food behaviour
     useEffect(() => {
         if (food) {
-            setApple(new Apple(new Vector(props.width, props.height)));
+            const tempApples = apples;
+            tempApples.forEach((ta, i) => {
+                if (Math.abs(ta.position.x - snake.head.x) < snake.scale && Math.abs(ta.position.y - snake.head.y) < snake.scale) {
+                    tempApples[i] = new Apple(new Vector(props.width, props.height), tempApples[i].color)
+                }
+            })
+            setApples(tempApples)
             const random = Math.floor(Math.random() * (20 - 1 + 1) + 1);
             console.log(random);
             if (random > 10) {
@@ -34,6 +42,16 @@ function Level3(props: IGameProps) {
         }
         setFood(false)
     }, [food])
+
+    //Getting decoy food behaviour
+    useEffect(() => {
+        snake.color = GameColors.Black
+        for (let index = 0; index < 10; index++) {
+            const apple = new Apple(new Vector(props.width, props.height))
+            apple.color = GameColors.Red
+            apples.push(apple)
+        }
+    }, [])
 
     //Game "ticks" running main loop
     useEffect(() => {
@@ -51,12 +69,17 @@ function Level3(props: IGameProps) {
             }
             // snake.grow() // TODO: remove. only for testing!
             snake.redraw(ctx, props.width, props.height)
-            apple.draw(ctx)
+            apples.forEach(a => {
+                a.draw(ctx);
+            })
 
-            if (!food && Math.abs(apple.position.x - snake.head.x) < snake.scale && Math.abs(apple.position.y - snake.head.y) < snake.scale) {
-                snake.frozen = true;
-                setFood(true)
+            if (!food) {
+                //Found food but not next level
+                if (apples.filter(a => Math.abs(a.position.x - snake.head.x) < snake.scale && Math.abs(a.position.y - snake.head.y) < snake.scale).length != 0) {
+                    setFood(true)
+                }
             }
+
 
 
         }, 100);
