@@ -31,7 +31,7 @@ function Level4(props: IGameProps) {
     //Game "ticks" running main loop
     useEffect(() => {
         const interval = setInterval(() => {
-            setScore(snake.body.length);
+            setScore(snake.score);
             if (!ref.current) return
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;

@@ -47,16 +47,28 @@
 }
 
 .Level4 {
-    color: #747369;
+    color: #f2f2f2;
     background-color: #747369;
 }
 
 .Level5 {
-    color: #1e1818;
+    color: #f2f2f2;
     background-color: #1e1818;
 }
 
 .Level6 {
     color: #747369;
+    background-color: #f2f2f2;
+}
+
+.Level3 #GameCanvasRender {
+    background-color: #f2f2f2;
+}
+
+.Level4 #GameCanvasRender {
+    background-color: #f2f2f2;
+}
+
+.Level5 #GameCanvasRender {
     background-color: #f2f2f2;
 }

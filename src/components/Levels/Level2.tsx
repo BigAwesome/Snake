@@ -31,12 +31,12 @@ function Level2(props: IGameProps) {
         document.addEventListener("keydown", (e: KeyboardEvent) => {
             setMove(true)
             snake.direction = inputHandler(e)
-            setScore(snake.body.length);
+            setScore(snake.score);
         });
         document.addEventListener("keyup", (e: KeyboardEvent) => {
             snake.direction = inputHandler(e)
             setMove(false)
-            setScore(snake.body.length);
+            setScore(snake.score);
         });
 
     }, []);
@@ -83,7 +83,7 @@ function Level2(props: IGameProps) {
 
     //Game "ticks" running main loop
     useEffect(() => {
-        setScore(snake.body.length);
+        setScore(snake.score);
         const interval = setInterval(() => {
             if (move) snake.move()
             if (!ref.current) return

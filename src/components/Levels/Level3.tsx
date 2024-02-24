@@ -22,7 +22,14 @@ function Level3(props: IGameProps) {
     useEffect(() => {
         if (food) {
             setApple(new Apple(new Vector(props.width, props.height)));
-            snake.grow()
+            const random = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+            console.log(random);
+            if (random > 10) {
+                snake.grow(random)
+            }
+            if (random <= 10) {
+                snake.shrink(random)
+            }
             snake.frozen = false;
         }
         setFood(false)
@@ -31,7 +38,7 @@ function Level3(props: IGameProps) {
     //Game "ticks" running main loop
     useEffect(() => {
         const interval = setInterval(() => {
-            setScore(snake.body.length);
+            setScore(snake.score);
             if (!ref.current) return
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;
@@ -52,7 +59,7 @@ function Level3(props: IGameProps) {
             }
 
 
-        }, 200);
+        }, 100);
         if (ref.current) {
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;

@@ -5,10 +5,14 @@ import Snake from "./Snake";
 import Vector from "./Vector";
 
 export function formatScore(score: number): string {
-    if (score < 10) return `000${score}`;
-    if (score < 100) return `00${score}`;
-    if (score < 1000) return `0${score}`;
-    return score.toString();
+    let renderString = "";
+    let absScore = Math.abs(score);
+    if (score < 0) renderString = "-"
+    if (absScore < 10) renderString += `000${absScore}`;
+    else if (absScore < 100) renderString += `00${absScore}`;
+    else if (absScore < 1000) renderString += `0${absScore}`;
+    else renderString += absScore.toString();
+    return renderString
 }
 
 
