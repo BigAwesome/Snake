@@ -18,6 +18,9 @@ export default class Snake implements ISnake {
 
     private _onSelfCollision: Function;
 
+    private _score: number;
+
+
     constructor(start: IVector, onSelfCollision: () => void, direction?: IVector) {
         this._head = new Vector(start.x, start.y)
         this._direction = direction ? direction : new Vector(1, 0)
@@ -27,6 +30,7 @@ export default class Snake implements ISnake {
         this._head.x -= this._head.x % this._scale
         this._head.y -= this._head.y % this._scale
         this._frozen = false;
+        this._score = 0;
         if (this._head.x <= 0) this._head.x = this._scale
         if (this._head.y <= 0) this._head.y = this._scale
     }
@@ -66,13 +70,47 @@ export default class Snake implements ISnake {
     public set scale(v: number) {
         this._scale = v;
     }
+    public get score(): number {
+        return this._score;
+    }
+    public set score(v: number) {
+        this._score = v;
+    }
 
-    grow(): void {
+    grow(amount?: number): void {
+        if (amount !== null && typeof amount !== "undefined" && amount > 1) {
+            for (let index = 0; index < amount; index++) {
+                return this.grow(1)
+            }
+        }
+        this.score += amount ? amount : 1;
+        if (this.score <= 0) return;
+
         this.body.push(new Vector(this.body[this._body.length - 1].x, this.body[this._body.length - 1].y))
         if (this._body.length === 2) {
             this.body[1].x -= this.direction.x * (this.scale)
             this.body[1].y -= this.direction.x * (this.scale)
         }
+    }
+
+    shrink(amount?: number | undefined): void {
+        if (amount !== null && typeof amount !== "undefined" && amount > 1) {
+            for (let index = 0; index < amount; index++) {
+                return this.shrink(1);
+            }
+        }
+        this.score -= amount ? amount : 1;
+
+        if (this.score <= 0) {
+            this.body = [this.head]
+            return;
+        }
+        let newBody = [...this.body];
+        newBody = newBody.slice(newBody.length - 1, 1);
+        if (this.body.length === 1) {
+            return;
+        }
+        this.body = newBody;
     }
     move(): void {
         if (this._frozen) return;

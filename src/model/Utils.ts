@@ -5,10 +5,14 @@ import Snake from "./Snake";
 import Vector from "./Vector";
 
 export function formatScore(score: number): string {
-    if (score < 10) return `000${score}`;
-    if (score < 100) return `00${score}`;
-    if (score < 1000) return `0${score}`;
-    return score.toString();
+    let renderString = "";
+    let absScore = Math.abs(score);
+    if (score < 0) renderString = "-"
+    if (absScore < 10) renderString += `000${absScore}`;
+    else if (absScore < 100) renderString += `00${absScore}`;
+    else if (absScore < 1000) renderString += `0${absScore}`;
+    else renderString += absScore.toString();
+    return renderString
 }
 
 
@@ -24,6 +28,16 @@ export function enforceBorder(props: IGameProps, snake: Snake): boolean {
     if (props.height && snake.head.y > (props.height - snake.scale)) return true
 
     return false
+}
+
+export function mirrorBorder(props: IGameProps, snake: Snake): void {
+    if (typeof props.height === "undefined" || typeof props.width === "undefined") throw new Error("Field size not given! Cant perform teleportation")
+    if (enforceBorder(props, snake)) {
+        if (snake.head.y < 0) snake.head.y = props.height - snake.scale
+        if (snake.head.x < 0) snake.head.x = props.width - snake.scale
+        if (snake.head.y > props.height - snake.scale) snake.head.y = 0 + snake.scale
+        if (snake.head.x > props.width - snake.scale) snake.head.x = 0 + snake.scale
+    }
 }
 
 export function getRandomPosition(width: number, height: number) {
