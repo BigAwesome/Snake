@@ -30,6 +30,16 @@ export function enforceBorder(props: IGameProps, snake: Snake): boolean {
     return false
 }
 
+export function mirrorBorder(props: IGameProps, snake: Snake): void {
+    if (typeof props.height === "undefined" || typeof props.width === "undefined") throw new Error("Field size not given! Cant perform teleportation")
+    if (enforceBorder(props, snake)) {
+        if (snake.head.y < 0) snake.head.y = props.height - snake.scale
+        if (snake.head.x < 0) snake.head.x = props.width - snake.scale
+        if (snake.head.y > props.height - snake.scale) snake.head.y = 0 + snake.scale
+        if (snake.head.x > props.width - snake.scale) snake.head.x = 0 + snake.scale
+    }
+}
+
 export function getRandomPosition(width: number, height: number) {
     return new Vector(Math.floor(Math.random() * (width ? width : 10)), Math.floor(Math.random() * (height ? height : 10)));
 
