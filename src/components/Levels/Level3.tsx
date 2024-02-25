@@ -47,7 +47,7 @@ function Level3(props: IGameProps) {
 
     //Getting decoy food behaviour
     useEffect(() => {
-        snake.color = GameColors.Black
+        snake.color = GameColors.First
         for (let index = 0; index < 10; index++) {
             const apple = new Apple(new Vector(props.width, props.height))
             apple.color = GameColors.Red

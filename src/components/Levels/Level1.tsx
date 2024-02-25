@@ -79,7 +79,7 @@ function Level1(props: IGameProps) {
 
 
     return <div id="GameDisplay">
-        <div> <img src={AppleImg} width={snake.scale} height={snake.scale} alt="" /> {formatScore(score)}</div>
+        <div> <img className="LevelIcon" src={AppleImg} width={snake.scale} height={snake.scale} alt="" /> {formatScore(score)}</div>
         <canvas id="GameCanvasRender" ref={ref} width={props.width} height={props.height} />
     </div>
 }

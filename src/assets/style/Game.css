@@ -80,7 +80,14 @@
     background-color: #f2f2f2;
 }
 
+.LevelIcon {
+    margin-right: 20px;
+}
+
 .Level3 .LevelIcon {
     border: #f2f2f2 1px solid;
-    margin-right: 20px;
+}
+
+.Level4 .LevelIcon {
+    border: #f2f2f2 1px solid;
 }

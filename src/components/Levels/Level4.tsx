@@ -6,6 +6,8 @@ import Vector from "../../model/Vector";
 import { enforceBorder, formatScore, inputHandler, mirrorBorder } from "../../model/Utils";
 import { IApple } from "../../interfaces/IApple";
 import { GameColors } from "../../levelBindings";
+import AppleImg from "../../assets/images/L4icon.png"
+
 
 
 
@@ -38,10 +40,10 @@ function Level4(props: IGameProps) {
 
     //Getting decoy food behaviour
     useEffect(() => {
-        snake.color = GameColors.Fourth
+        snake.color = GameColors.First
         for (let index = 0; index < 10; index++) {
             const apple = new Apple(new Vector(props.width, props.height))
-            apple.color = GameColors.Fourth
+            apple.color = GameColors.First
             apples.push(apple)
         }
     }, [])
@@ -86,7 +88,7 @@ function Level4(props: IGameProps) {
 
 
     return <div id="GameDisplay">
-        <div></div>
+        <div><img className="LevelIcon" src={AppleImg} width={snake.scale} height={snake.scale} alt="" /></div>
         <canvas id="GameCanvasRender" ref={ref} width={props.width} height={props.height} />
     </div>
 }
