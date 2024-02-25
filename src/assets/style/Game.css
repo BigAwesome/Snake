@@ -79,3 +79,8 @@
     border: none;
     background-color: #f2f2f2;
 }
+
+.Level3 .LevelIcon {
+    border: #f2f2f2 1px solid;
+    margin-right: 20px;
+}

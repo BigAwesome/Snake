@@ -7,6 +7,10 @@ import { enforceBorder, formatScore, inputHandler } from "../../model/Utils";
 import { GameColors } from "../../levelBindings";
 import { IApple } from "../../interfaces/IApple";
 import SnakeImg from "../../assets/images/Snake_1.png"
+import AppleImg from "../../assets/images/Apple_Black_1.png"
+import DecoyImgRed from "../../assets/images/Apple_Red_1.png"
+import DecoyImgGrey from "../../assets/images/Apple_Grey_1.png"
+
 
 
 
@@ -100,10 +104,26 @@ function Level2(props: IGameProps) {
             const snakeImg = new Image()
             snakeImg.src = SnakeImg
             snake.redraw(ctx, props.width, props.height, snakeImg)
-            apple.draw(ctx)
 
-            decoys.forEach(d => {
-                d.draw(ctx);
+            const appleImg = new Image()
+
+            apple.draw(ctx, appleImg)
+            appleImg.src = AppleImg
+
+
+
+            console.log(decoys.length);
+            decoys.forEach((d, i) => {
+                if (i === 0 || i % 2 === 0) {
+                    const decoyImgRed = new Image()
+                    d.draw(ctx, decoyImgRed);
+                    decoyImgRed.src = DecoyImgRed
+                }
+                else {
+                    const decoyImgGrey = new Image()
+                    d.draw(ctx, decoyImgGrey);
+                    decoyImgGrey.src = DecoyImgGrey
+                }
             })
 
             if (!food) {
@@ -129,7 +149,7 @@ function Level2(props: IGameProps) {
     });
 
     return <div id="GameDisplay">
-        <div>{formatScore(score)}</div>
+        <div><img src={AppleImg} width={snake.scale} height={snake.scale} alt="" />{formatScore(score)}</div>
         <canvas id="GameCanvasRender" ref={ref} width={props.width} height={props.height} />
     </div>
 }
