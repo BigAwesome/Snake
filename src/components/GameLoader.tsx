@@ -6,7 +6,7 @@ import { Levels } from "../config";
 
 function GameLoader(props: IGameLoaderProps) {
 
-    const [level, setLevel] = useState(1); //TODO: reset to 1 after testing 
+    const [level, setLevel] = useState(5); //TODO: reset to 1 after testing 
     const [reset, setReset] = useState(false);
     const [video, setVideo] = useState(false);
     const [trys, setTrys] = useState(1);

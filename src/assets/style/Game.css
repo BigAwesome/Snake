@@ -67,9 +67,11 @@
 }
 
 .Level4 #GameCanvasRender {
+    border: none;
     background-color: #f2f2f2;
 }
 
 .Level5 #GameCanvasRender {
+    border: none;
     background-color: #f2f2f2;
 }
