@@ -4,6 +4,7 @@ import Apple from "../../model/Apple";
 import Snake from "../../model/Snake";
 import Vector from "../../model/Vector";
 import { enforceBorder, formatScore, inputHandler } from "../../model/Utils";
+import { GameColors } from "../../levelBindings";
 
 
 
@@ -17,6 +18,11 @@ function Level5(props: IGameProps) {
     const [food, setFood] = useState(false)
 
     const ref = useRef<HTMLCanvasElement>(null)
+
+    //Getting food behaviour
+    useEffect(() => {
+        snake.color = GameColors.Black
+    })
 
     //Getting food behaviour
     useEffect(() => {
@@ -36,13 +42,13 @@ function Level5(props: IGameProps) {
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;
             snake.move()
-
-            if (enforceBorder(props, snake)) {
+            if (typeof props.width === "undefined" || typeof props.height === "undefined") throw new Error("Cant read size")
+            if (props.width - snake.scale <= 0 || props.height - snake.scale <= 0) {
                 if (props.onComplete)
                     props.onComplete()
                 else throw new Error("Game Over but no screen defined")
             }
-            // snake.grow() // TODO: remove. only for testing!
+
             snake.redraw(ctx, props.width, props.height)
             apple.draw(ctx)
 
@@ -67,7 +73,7 @@ function Level5(props: IGameProps) {
 
 
     return <div id="GameDisplay">
-        <div>{formatScore(score)}</div>
+        <div></div>
         <canvas id="GameCanvasRender" ref={ref} width={props.width} height={props.height} />
     </div>
 }

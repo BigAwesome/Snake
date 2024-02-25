@@ -4,11 +4,16 @@ import Apple from "../../model/Apple";
 import Snake from "../../model/Snake";
 import Vector from "../../model/Vector";
 import { enforceBorder, formatScore, inputHandler } from "../../model/Utils";
+import SnakeImg from "../../assets/images/Snake_1.png"
+import AppleImg from "../../assets/images/Apple_1.png"
+
 
 
 
 function Level1(props: IGameProps) {
     const randomVector = new Vector(Math.floor(Math.random() * (props.width ? props.width : 10)), Math.floor(Math.random() * (props.height ? props.height : 10)));
+
+
 
 
     const [score, setScore] = useState(0);
@@ -42,9 +47,16 @@ function Level1(props: IGameProps) {
                     props.onComplete()
                 else throw new Error("Game Over but no screen defined")
             }
+
+            const snakeImg = new Image()
+            snakeImg.src = SnakeImg
+            snake.redraw(ctx, props.width, props.height, snakeImg)
+
+
+            const appleImg = new Image();
+            appleImg.src = AppleImg
             // snake.grow() // TODO: remove. only for testing!
-            snake.redraw(ctx, props.width, props.height)
-            apple.draw(ctx)
+            apple.draw(ctx, appleImg)
 
             if (!food && Math.abs(apple.position.x - snake.head.x) < snake.scale && Math.abs(apple.position.y - snake.head.y) < snake.scale) {
                 snake.frozen = true;
@@ -67,7 +79,7 @@ function Level1(props: IGameProps) {
 
 
     return <div id="GameDisplay">
-        <div>{formatScore(score)}</div>
+        <div> <img src={AppleImg} width={snake.scale} height={snake.scale} alt="" /> {formatScore(score)}</div>
         <canvas id="GameCanvasRender" ref={ref} width={props.width} height={props.height} />
     </div>
 }

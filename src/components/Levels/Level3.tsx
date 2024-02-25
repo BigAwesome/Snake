@@ -6,6 +6,8 @@ import Vector from "../../model/Vector";
 import { enforceBorder, formatScore, inputHandler } from "../../model/Utils";
 import { GameColors } from "../../levelBindings";
 import { IApple } from "../../interfaces/IApple";
+import AppleImg from "../../assets/images/L3icon.png"
+
 
 
 
@@ -97,7 +99,7 @@ function Level3(props: IGameProps) {
 
 
     return <div id="GameDisplay">
-        <div>{formatScore(score)}</div>
+        <div><img className="LevelIcon" src={AppleImg} width={snake.scale} height={snake.scale} alt="" />{formatScore(score)}</div>
         <canvas id="GameCanvasRender" ref={ref} width={props.width} height={props.height} />
     </div>
 }

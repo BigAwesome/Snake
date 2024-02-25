@@ -27,6 +27,10 @@
     margin: 5px;
 }
 
+.HiddenIconCache {
+    display: none;
+}
+
 .Level {
     background-color: transparent;
 }
@@ -67,9 +71,16 @@
 }
 
 .Level4 #GameCanvasRender {
+    border: none;
     background-color: #f2f2f2;
 }
 
 .Level5 #GameCanvasRender {
+    border: none;
     background-color: #f2f2f2;
+}
+
+.Level3 .LevelIcon {
+    border: #f2f2f2 1px solid;
+    margin-right: 20px;
 }

@@ -3,10 +3,11 @@ import IKillScreenProps from "../../interfaces/IKillScreen";
 function KillScreen(props: IKillScreenProps) {
     return <>
         Game Over
-        <button onClick={() => {
+        <div onClick={() => {
             props.setReset(false);
             props.setTrys(props.trys + 1);
-        }}>Restart</button>
+        }}>REFLECT</div>
+        <div onClick={() => { }}>LEAVE</div>
     </>
 }
 export default KillScreen

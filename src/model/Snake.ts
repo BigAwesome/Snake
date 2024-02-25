@@ -10,6 +10,10 @@ export default class Snake implements ISnake {
     private _head: IVector;
     private _body: IVector[];
 
+
+    private _img?: HTMLImageElement;
+
+
     private _frozen: boolean;
 
     private _color: GameColors;
@@ -77,6 +81,7 @@ export default class Snake implements ISnake {
         this._score = v;
     }
 
+
     grow(amount?: number): void {
         if (amount !== null && typeof amount !== "undefined" && amount > 1) {
             for (let index = 0; index < amount; index++) {
@@ -132,11 +137,20 @@ export default class Snake implements ISnake {
         if (this.direction.y === -1 && direction.y === 1) return // Vertical 180 flip
         this.direction = direction;
     }
-    redraw(ctx: CanvasRenderingContext2D, width?: number, height?: number): void {
+    redraw(ctx: CanvasRenderingContext2D, width?: number, height?: number, img?: HTMLImageElement): void {
         ctx.clearRect(0, 0, width ? width : 100, height ? height : 100);
-        this.draw(ctx)
+        this.draw(ctx, img)
     }
-    draw(ctx: CanvasRenderingContext2D): void {
+    draw(ctx: CanvasRenderingContext2D, img?: HTMLImageElement): void {
+        if (typeof img !== "undefined" && img !== null && img) {
+            // Render entire body
+            img.onload = () => {
+                this.body.forEach(bp => {
+                    ctx.drawImage(img, bp.x - this.scale / 2, bp.y - this.scale / 2, this.scale, this.scale)
+                })
+            }
+            return;
+        }
         ctx.fillStyle = this.color;
         // Render entire body
         this.body.forEach(bp => {
