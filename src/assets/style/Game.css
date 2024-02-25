@@ -27,6 +27,10 @@
     margin: 5px;
 }
 
+.HiddenIconCache {
+    display: none;
+}
+
 .Level {
     background-color: transparent;
 }

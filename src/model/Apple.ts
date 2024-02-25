@@ -40,15 +40,22 @@ export default class Apple implements IApple {
         this._color = v;
     }
 
-    draw(ctx: CanvasRenderingContext2D): void {
+    draw(ctx: CanvasRenderingContext2D, img?: HTMLImageElement,): void {
+        if (typeof img !== "undefined" && img !== null && img) {
+            // Render entire body
+            img.onload = () => {
+                ctx.drawImage(img, this.position.x - this.scale / 2, this.position.y - this.scale / 2, this.scale, this.scale)
+            }
+            return;
+        }
         ctx.fillStyle = this.color;
         // Render entire body
         ctx.fillRect(this.position.x - this.scale / 2, this.position.y - this.scale / 2, this.scale, this.scale)
 
     }
-    redraw(ctx: CanvasRenderingContext2D, width?: number | undefined, height?: number | undefined): void {
+    redraw(ctx: CanvasRenderingContext2D, width?: number | undefined, height?: number | undefined, img?: HTMLImageElement): void {
         // ctx.clearRect(0, 0, width ? width : 100, height ? height : 100);
-        this.draw(ctx)
+        this.draw(ctx, img)
     }
 
 }

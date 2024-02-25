@@ -6,6 +6,8 @@ import Vector from "../../model/Vector";
 import { enforceBorder, formatScore, inputHandler } from "../../model/Utils";
 import { GameColors } from "../../levelBindings";
 import { IApple } from "../../interfaces/IApple";
+import SnakeImg from "../../assets/images/Snake_1.png"
+
 
 
 
@@ -95,7 +97,9 @@ function Level2(props: IGameProps) {
                     return props.onComplete()
                 else throw new Error("Game Over but no screen defined")
             }
-            snake.redraw(ctx, props.width, props.height)
+            const snakeImg = new Image()
+            snakeImg.src = SnakeImg
+            snake.redraw(ctx, props.width, props.height, snakeImg)
             apple.draw(ctx)
 
             decoys.forEach(d => {
