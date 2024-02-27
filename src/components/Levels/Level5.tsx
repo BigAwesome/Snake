@@ -21,7 +21,7 @@ function Level5(props: IGameProps) {
 
     //Getting food behaviour
     useEffect(() => {
-        snake.color = GameColors.Black
+        snake.color = GameColors.Fifth
     })
 
     //Getting food behaviour
