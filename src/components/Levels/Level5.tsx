@@ -3,7 +3,7 @@ import { IGameProps } from "../../interfaces/IGame";
 import Apple from "../../model/Apple";
 import Snake from "../../model/Snake";
 import Vector from "../../model/Vector";
-import { enforceBorder, formatScore, inputHandler } from "../../model/Utils";
+import { enforceBorder, formatScore, inputHandler, mirrorBorder } from "../../model/Utils";
 import { GameColors } from "../../levelBindings";
 
 
@@ -16,18 +16,22 @@ function Level5(props: IGameProps) {
     const [snake] = useState(new Snake(randomVector, () => props.onFail ? props.onFail() : null))
     const [apple, setApple] = useState(new Apple(new Vector(props.width, props.height)))
     const [food, setFood] = useState(false)
+    const [size, setSize] = useState(new Vector(props.width, props.height))
+    const [sizeCooldown, setCooldown] = useState(0)
 
     const ref = useRef<HTMLCanvasElement>(null)
 
-    //Getting food behaviour
+    //startup behaviour
     useEffect(() => {
         snake.color = GameColors.Fifth
+        // setSize(new Vector(size.x, size.y))
+
     })
 
     //Getting food behaviour
     useEffect(() => {
         if (food) {
-            setApple(new Apple(new Vector(props.width, props.height)));
+            setApple(new Apple(new Vector(size.x, size.y)));
             snake.grow()
             snake.frozen = false;
         }
@@ -42,21 +46,26 @@ function Level5(props: IGameProps) {
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;
             snake.move()
-            if (typeof props.width === "undefined" || typeof props.height === "undefined") throw new Error("Cant read size")
-            if (props.width - snake.scale <= 0 || props.height - snake.scale <= 0) {
+            if (typeof size.x === "undefined" || typeof size.y === "undefined") throw new Error("Cant read size")
+
+            if (size.x <= snake.scale || size.y <= snake.scale) {
                 if (props.onComplete)
                     props.onComplete()
                 else throw new Error("Game Over but no screen defined")
             }
+            if (sizeCooldown % 4 == 0) {
+                setSize(new Vector(size.x - 5, size.y - 2))
+            }
+            mirrorBorder(props, snake)
 
-            snake.redraw(ctx, props.width, props.height)
+            snake.redraw(ctx, size.x, size.y)
             apple.draw(ctx)
 
             if (!food && Math.abs(apple.position.x - snake.head.x) < snake.scale && Math.abs(apple.position.y - snake.head.y) < snake.scale) {
                 snake.frozen = true;
                 setFood(true)
             }
-
+            setCooldown(sizeCooldown + 1)
 
         }, 200);
         if (ref.current) {
@@ -69,12 +78,12 @@ function Level5(props: IGameProps) {
         return () => {
             clearInterval(interval);
         };
-    }, [score]);
+    }, [score, sizeCooldown, size, food]);
 
 
     return <div id="GameDisplay">
         <div></div>
-        <canvas id="GameCanvasRender" ref={ref} width={props.width} height={props.height} />
+        <canvas id="GameCanvasRender" ref={ref} width={size.x} height={size.y} />
     </div>
 }
 export default Level5;

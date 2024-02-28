@@ -38,7 +38,7 @@ function GameLoader(props: IGameLoaderProps) {
                 </div>
             </div>
         return <div id="GameWrapper" key={level + " " + trys} className={" Level" + level}>
-            <div className="LevelLabel">Level {level}</div>
+            <div className="LevelLabel" onClick={() => setLevel(level + 1)}>Level {level}</div>
             <Game {...settings} />
         </div>
     }
