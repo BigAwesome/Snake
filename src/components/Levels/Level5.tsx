@@ -54,11 +54,14 @@ function Level5(props: IGameProps) {
                 else throw new Error("Game Over but no screen defined")
             }
             if (sizeCooldown % 4 == 0) {
-                setSize(new Vector(size.x - 5, size.y - 2))
+                setSize(new Vector(size.x - 4, size.y - 4))
             }
-            mirrorBorder(props, snake)
+            mirrorBorder({ ...props, width: size.x, height: size.y }, snake)
 
             snake.redraw(ctx, size.x, size.y)
+
+            if (apple.position.x > size.x - snake.scale) apple.position.x = size.x - (snake.scale * 2)
+            if (apple.position.y > size.y - snake.scale) apple.position.y = size.y - (snake.scale * 2)
             apple.draw(ctx)
 
             if (!food && Math.abs(apple.position.x - snake.head.x) < snake.scale && Math.abs(apple.position.y - snake.head.y) < snake.scale) {
