@@ -1,8 +1,6 @@
 import { IVideoProps } from "../interfaces/IVideo";
 
 export default function Video(props: IVideoProps) {
-
-
     return <div id="VideoWrapper" key={props.level + " " + props.trys} className={" Level" + (props.level - 1)}>
         <div className="LevelLabel">Level {props.level - 1} Video</div>
         <div id="VideoDisplay">

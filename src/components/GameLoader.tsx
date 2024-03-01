@@ -31,7 +31,7 @@ function GameLoader(props: IGameLoaderProps) {
         return (<div id="GameWrapper" key={level + " " + trys} className={" Level" + level}><KillScreen setReset={setReset} setTrys={setTrys} trys={trys} /></div>)
     } else {
         if (video)
-            <Video game={props.game} level={level} trys={trys} setVideo={setVideo} />
+            return <Video game={props.game} level={level} trys={trys} setVideo={setVideo} />
         return <div id="GameWrapper" key={level + " " + trys} className={" Level" + level}>
             <div className="LevelLabel" onClick={() => setLevel(level + 1)}>Level {level}</div>
             <Game {...settings} />

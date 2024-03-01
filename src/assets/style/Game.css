@@ -35,6 +35,11 @@
     background-color: transparent;
 }
 
+.Level0 {
+    color: #747369;
+    background-color: #b4c138;
+}
+
 .Level1 {
     color: #747369;
     background-color: #b4c138;
@@ -63,6 +68,11 @@
 .Level6 {
     color: #747369;
     background-color: #f2f2f2;
+}
+
+.Level7 {
+    color: #747369;
+    background-color: #b4c138;
 }
 
 .Level3 #GameCanvasRender {
