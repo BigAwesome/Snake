@@ -109,6 +109,7 @@
     place-self: center;
     background-size: cover;
     background-repeat: none;
+    background-position: center center;
 }
 
 .ButtonWrapper .Button {
@@ -120,6 +121,13 @@
     margin: 8%;
     width: 33%;
     min-height: 76px;
+
+}
+
+.ButtonWrapper .ButtonWide {
+    width: 100%;
+    margin: 0%;
+    margin-top: 8%;
 
 }
 
