@@ -101,3 +101,31 @@
 .Level4 .LevelIcon {
     border: #f2f2f2 1px solid;
 }
+
+.ButtonWrapper {
+    display: block;
+    width: 40%;
+    min-height: 294px;
+    place-self: center;
+    background-size: cover;
+    background-repeat: none;
+}
+
+.ButtonWrapper .Button {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 44px;
+    margin: 8%;
+    width: 33%;
+    min-height: 76px;
+
+}
+
+.MenuIcon {
+    margin-right: 20px;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}

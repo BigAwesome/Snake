@@ -7,7 +7,7 @@ import Video from "./Video";
 
 function GameLoader(props: IGameLoaderProps) {
 
-    const [level, setLevel] = useState(1); //TODO: reset to 1 after testing 
+    const [level, setLevel] = useState(6); //TODO: reset to 1 after testing 
     const [reset, setReset] = useState(false);
     const [video, setVideo] = useState(true);
     const [trys, setTrys] = useState(1);
