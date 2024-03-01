@@ -1,7 +1,9 @@
-function Level6() {
+import { IGameProps } from "../../interfaces/IGame"
+
+function Level6(props: IGameProps) {
     return <>
-        <button onClick={() => { }}>WIN</button>
-        <button onClick={() => { }}>LOSS</button>
+        <button onClick={() => { if (props.onComplete) props.onComplete() }}>WIN</button>
+        <button onClick={() => { if (props.onComplete) props.onComplete() }}>LOSS</button>
     </>
 }
 
