@@ -1,25 +1,38 @@
+import { useEffect, useState } from 'react';
 import '../assets/style/App.css';
 import '../assets/style/Game.css';
 import GameLoader from './GameLoader';
-import AppleBase from "../assets/images/Apple_1.png"
-import AppleBlack from "../assets/images/Apple_Black_1.png"
-import AppleGrey from "../assets/images/Apple_Grey_1.png"
-import AppleRed from "../assets/images/Apple_Red_1.png"
-import Snake from "../assets/images/Snake_1.png"
+import Video from './Video';
+import SplashImg from "../assets/images/Splash.png"
 
 function App() {
+  const [menu, setMenu] = useState(false);
+  const [splash, setSplash] = useState(true);
+
   const w = window.innerWidth;
   const h = window.innerHeight;
+
+  useEffect(() => {
+    setTimeout(() => {
+
+      setSplash(false)
+    }, 5000)
+  }, [])
+
+  if (splash)
+    return <div className="App" onClick={() => { setSplash(false) }}>
+      <div id="GameWrapper" className={"Level1"}>
+        <div id="GameDisplay">
+          <img src={SplashImg} />
+        </div>
+      </div>
+    </div>
+
+  if (menu) {
+    return <Video level={0} game={{ width: parseInt((w / 3).toString()), height: parseInt((h / 2).toString()) }} setVideo={setMenu} trys={0} />
+  }
   return (
     <div className="App">
-      <div className='HiddenIconCache'>
-        <img id='AppleBase' src={AppleBase} alt="" />
-        <img id='AppleBlack' src={AppleBlack} alt="" />
-        <img id='AppleGrey' src={AppleGrey} alt="" />
-        <img id='AppleRed' src={AppleRed} alt="" />
-        <img id='Snake' src={Snake} alt="" />
-      </div>
-
       <GameLoader game={{ width: parseInt((w / 3).toString()), height: parseInt((h / 2).toString()) }} />
     </div>
   );

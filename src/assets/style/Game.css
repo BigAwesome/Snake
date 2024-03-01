@@ -35,6 +35,11 @@
     background-color: transparent;
 }
 
+.Level0 {
+    color: #747369;
+    background-color: #b4c138;
+}
+
 .Level1 {
     color: #747369;
     background-color: #b4c138;
@@ -57,12 +62,17 @@
 
 .Level5 {
     color: #f2f2f2;
-    background-color: #1e1818;
+    background-color: #110e0e;
 }
 
 .Level6 {
     color: #747369;
     background-color: #f2f2f2;
+}
+
+.Level7 {
+    color: #747369;
+    background-color: #b4c138;
 }
 
 .Level3 #GameCanvasRender {
@@ -90,4 +100,46 @@
 
 .Level4 .LevelIcon {
     border: #f2f2f2 1px solid;
+}
+
+.ButtonWrapper {
+    display: block;
+    width: 40%;
+    min-height: 294px;
+    place-self: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.ButtonWrapper .Button {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 44px;
+    margin: 8%;
+    width: 33%;
+    min-height: 76px;
+
+}
+
+.ButtonWrapper .ButtonWide {
+    width: 100%;
+    margin: 0%;
+    margin-top: 8%;
+
+}
+
+.ButtonWrapper h2 {
+    margin-top: 100px;
+    text-align: center;
+
+}
+
+.MenuIcon {
+    margin-right: 20px;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
 }

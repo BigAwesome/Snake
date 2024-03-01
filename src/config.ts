@@ -4,6 +4,7 @@ import Level3 from "./components/Levels/Level3";
 import Level4 from "./components/Levels/Level4";
 import Level5 from "./components/Levels/Level5";
 import Level6 from "./components/Levels/Level6";
+import Level7 from "./components/Levels/Level7";
 
 export const globalScaleFactor = 12;
 
@@ -14,4 +15,5 @@ export const Levels: any = {
     "4": Level4,
     "5": Level5,
     "6": Level6,
+    "7": Level7,
 }
