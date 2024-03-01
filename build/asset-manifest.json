@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/Snake/build/static/css/main.a5e5f836.css",
-    "main.js": "/Snake/build/static/js/main.c0446536.js",
+    "main.css": "/Snake/build/static/css/main.1bbbbf02.css",
+    "main.js": "/Snake/build/static/js/main.5fc6dc35.js",
     "static/js/592.09218b42.chunk.js": "/Snake/build/static/js/592.09218b42.chunk.js",
+    "static/media/Splash.png": "/Snake/build/static/media/Splash.3d420f4684a04066f15f.png",
     "index.html": "/Snake/build/index.html",
-    "main.a5e5f836.css.map": "/Snake/build/static/css/main.a5e5f836.css.map",
-    "main.c0446536.js.map": "/Snake/build/static/js/main.c0446536.js.map",
+    "main.1bbbbf02.css.map": "/Snake/build/static/css/main.1bbbbf02.css.map",
+    "main.5fc6dc35.js.map": "/Snake/build/static/js/main.5fc6dc35.js.map",
     "592.09218b42.chunk.js.map": "/Snake/build/static/js/592.09218b42.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a5e5f836.css",
-    "static/js/main.c0446536.js"
+    "static/css/main.1bbbbf02.css",
+    "static/js/main.5fc6dc35.js"
   ]
 }
