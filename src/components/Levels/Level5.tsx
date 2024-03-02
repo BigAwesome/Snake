@@ -54,7 +54,7 @@ function Level5(props: IGameProps) {
                 else throw new Error("Game Over but no screen defined")
             }
             if (sizeCooldown % 4 == 0) {
-                setSize(new Vector(size.x - 4, size.y - 4))
+                setSize(new Vector(size.x - 32, size.y - 32))
             }
             mirrorBorder({ ...props, width: size.x, height: size.y }, snake)
 
