@@ -17,3 +17,16 @@ export const Levels: any = {
     "6": Level6,
     "7": Level7,
 }
+
+export const IntroVideoUrl = ""
+export const OutroVideoUrl = ""
+
+export const Videos: any = {
+    "1": null,
+    "2": null,
+    "3": null,
+    "4": null,
+    "5": null,
+    "6": "https://www.youtube.com/embed/mx8Atdp-PVU",
+    "7": null,
+}

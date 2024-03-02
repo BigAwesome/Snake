@@ -4,5 +4,6 @@ export interface IVideoProps {
     game?: IGameProps
     level: number
     trys: number
-    setVideo(state:boolean):void
+    setVideo(state: boolean): void
+    url?: string
 }

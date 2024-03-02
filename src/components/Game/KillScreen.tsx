@@ -1,5 +1,4 @@
 import IKillScreenProps from "../../interfaces/IKillScreen";
-import ButtonImg from "../../assets/images/ButtonBG.png"
 import SnakeImg from "../../assets/images/Apple_1.png"
 import AppleImg from "../../assets/images/Apple_Red_1.png"
 
@@ -7,7 +6,7 @@ import AppleImg from "../../assets/images/Apple_Red_1.png"
 
 function KillScreen(props: IKillScreenProps) {
     return <>
-        <div className="ButtonWrapper" style={{ backgroundImage: `url(${ButtonImg})` }} >
+        <div className="ButtonWrapper" >
             <h2>Game Over</h2>
             <div className="Button" onClick={() => {
                 props.setReset(false);
