@@ -22,7 +22,7 @@ function Level2(props: IGameProps) {
     const [score, setScore] = useState(0);
     const [snake] = useState(new Snake(randomVector, () => props.onFail ? props.onFail() : null))
     const [apple] = useState(new Apple(new Vector(props.width, props.height), GameColors.Black))
-    const [decoys, setDecoys] = useState([] as IApple[])
+    const [decoys, setDecoys] = useState([new Apple(new Vector(props.width, props.height), GameColors.Red), new Apple(new Vector(props.width, props.height), GameColors.First)] as IApple[])
     const [food, setFood] = useState(false)
     const [cleard, setCleard] = useState(false)
     const [move, setMove] = useState(false)
@@ -51,17 +51,26 @@ function Level2(props: IGameProps) {
 
     //Getting decoy food behaviour
     useEffect(() => {
-        snake.color = GameColors.Black
-        for (let index = 0; index < 10; index++) {
-            const decoy = new Apple(new Vector(props.width, props.height))
-            if (index % 2 == 0) {
-                decoy.color = GameColors.Red
-            } else {
-                decoy.color = GameColors.First
+        const interval = setInterval(() => {
+            if (decoys.length > 10) return
+            const tempDecoys = [...decoys]
+            snake.color = GameColors.Black
+            for (let index = 0; index < 2; index++) {
+                const decoy = new Apple(new Vector(props.width, props.height))
+                if (index % 2 == 0) {
+                    decoy.color = GameColors.Red
+                } else {
+                    decoy.color = GameColors.First
+                }
+                tempDecoys.push(decoy)
             }
-            decoys.push(decoy)
-        }
-    }, [])
+            setDecoys(tempDecoys)
+        }, 2000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [decoys])
 
 
     //Getting Level up behaviour
@@ -138,7 +147,7 @@ function Level2(props: IGameProps) {
             }
 
 
-        }, 200);
+        }, 400);
         if (ref.current) {
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;

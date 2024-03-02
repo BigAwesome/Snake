@@ -84,7 +84,7 @@ function Level3(props: IGameProps) {
 
 
 
-        }, 150);
+        }, 200);
         if (ref.current) {
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;
