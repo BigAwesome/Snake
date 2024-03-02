@@ -110,6 +110,8 @@
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center center;
+    border: #747369 5px solid;
+    /* border-radius: 10px; */
 }
 
 .ButtonWrapper .Button {
