@@ -70,7 +70,7 @@ function Level5(props: IGameProps) {
             }
             setCooldown(sizeCooldown + 1)
 
-        }, 200);
+        }, 400);
         if (ref.current) {
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;

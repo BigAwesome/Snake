@@ -73,7 +73,7 @@ function Level4(props: IGameProps) {
                 }
             }
 
-        }, 200);
+        }, 400);
         if (ref.current) {
             const ctx = ref.current.getContext('2d');
             if (!ctx) return;
