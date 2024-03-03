@@ -106,8 +106,8 @@ function Level2(props: IGameProps) {
             if (!ctx) return;
 
             if (enforceBorder(props, snake)) {
-                if (props.onComplete)
-                    return props.onComplete()
+                if (props.onFail)
+                    return props.onFail()
                 else throw new Error("Game Over but no screen defined")
             }
             const snakeImg = new Image()
@@ -119,9 +119,6 @@ function Level2(props: IGameProps) {
             apple.draw(ctx, appleImg)
             appleImg.src = AppleImg
 
-
-
-            console.log(decoys.length);
             decoys.forEach((d, i) => {
                 if (i === 0 || i % 2 === 0) {
                     const decoyImgRed = new Image()

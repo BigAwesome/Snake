@@ -22,11 +22,26 @@ export const IntroVideoUrl = ""
 export const OutroVideoUrl = ""
 
 export const Videos: any = {
-    "1": null,
-    "2": null,
-    "3": null,
-    "4": null,
-    "5": null,
+    "1": "https://www.youtube.com/embed/GyvuWEQ1Lhc",
+    "2": "https://www.youtube.com/embed/DAjCL9hcRbM",
+    "3": "https://www.youtube.com/embed/qPoEjopK35U",
+    "4": "https://www.youtube.com/embed/O7UxynXR_xo",
+    "5": "https://www.youtube.com/embed/Suu8-_ZFLYQ",
     "6": "https://www.youtube.com/embed/mx8Atdp-PVU",
-    "7": null,
+    "7": "https://www.youtube.com/embed/qPoEjopK35U",
+    "8": "https://www.youtube.com/embed/qPoEjopK35U",
+}
+
+
+export const Audios: any = {
+
+    "1": "",
+    "2": "https://cdn.freesound.org/previews/691/691002_13478074-lq.mp3",
+    "3": "",
+    "4": "https://cdn.freesound.org/previews/571/571174_9460928-lq.mp3",
+    "5": "https://cdn.freesound.org/previews/554/554717_11740799-lq.mp3",
+    "6": "https://cdn.freesound.org/previews/691/691002_13478074-lq.mp3",
+    "7": "",
+    "8": "",
+
 }

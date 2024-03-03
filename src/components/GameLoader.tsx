@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { IGameLoaderProps } from "../interfaces/IGameLoader";
 import KillScreen from "./Game/KillScreen";
-import { Levels, Videos } from "../config";
+import { Audios, Levels, Videos } from "../config";
 import Video from "./Video";
+import { Audio } from "./Game/Audio";
 
 
 function GameLoader(props: IGameLoaderProps) {
@@ -27,6 +28,7 @@ function GameLoader(props: IGameLoaderProps) {
     }
     const Game = Levels[level]
     const VideoUrl = Videos[level]
+    const AudioUrl = Audios[level]
 
     if (reset) {
         return (<div id="GameWrapper" key={level + " " + trys} className={" Level" + level}><KillScreen setReset={setReset} setTrys={setTrys} trys={trys} /></div>)
@@ -36,6 +38,7 @@ function GameLoader(props: IGameLoaderProps) {
         return <div id="GameWrapper" key={level + " " + trys} className={" Level" + level}>
             <div className="LevelLabel" onClick={() => setLevel(level + 1)}>Level {level}</div>
             <Game {...settings} />
+            <Audio url={AudioUrl}></Audio>
         </div>
     }
 }
