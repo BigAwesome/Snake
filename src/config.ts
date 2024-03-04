@@ -35,12 +35,12 @@ export const Videos: any = {
 
 export const Audios: any = {
 
-    "1": "",
-    "2": "https://cdn.freesound.org/previews/691/691002_13478074-lq.mp3",
-    "3": "",
+    "1": "https://cdn.freesound.org/previews/725/725780_15756875-lq.mp3",
+    "2": "https://cdn.freesound.org/previews/725/725781_15756875-lq.mp3",
+    "3": "https://cdn.freesound.org/previews/725/725782_15756875-lq.mp3",
     "4": "https://cdn.freesound.org/previews/571/571174_9460928-lq.mp3",
-    "5": "https://cdn.freesound.org/previews/554/554717_11740799-lq.mp3",
-    "6": "https://cdn.freesound.org/previews/691/691002_13478074-lq.mp3",
+    "5": "https://cdn.freesound.org/previews/725/725793_15756875-lq.mp3",
+    "6": "https://cdn.freesound.org/previews/725/725781_15756875-lq.mp3",
     "7": "",
     "8": "",
 
