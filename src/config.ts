@@ -28,8 +28,8 @@ export const Videos: any = {
     "4": "https://www.youtube.com/embed/O7UxynXR_xo",
     "5": "https://www.youtube.com/embed/Suu8-_ZFLYQ",
     "6": "https://www.youtube.com/embed/mx8Atdp-PVU",
-    "7": "https://www.youtube.com/embed/qPoEjopK35U",
-    "8": "https://www.youtube.com/embed/qPoEjopK35U",
+    "7": "https://www.youtube.com/embed/tWXolMjeZDA",
+    "8": "https://www.youtube.com/embed/aJc_b8y-OnE",
 }
 
 
