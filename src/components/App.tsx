@@ -12,12 +12,6 @@ function App() {
   const w = window.innerWidth;
   const h = window.innerHeight;
 
-  useEffect(() => {
-    setTimeout(() => {
-
-      setSplash(false)
-    }, 5000)
-  }, [])
 
   if (splash)
     return <div className="App" onClick={() => { setSplash(false) }}>

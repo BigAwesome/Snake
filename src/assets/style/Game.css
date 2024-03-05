@@ -24,7 +24,10 @@
 }
 
 #NextLevelBtn {
-    margin: 5px;
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    /* margin: 5px; */
 }
 
 .HiddenIconCache {
@@ -144,4 +147,18 @@
     width: 20px;
     height: 20px;
     vertical-align: middle;
+}
+
+.SmallButton {
+    min-height: unset;
+}
+
+.CloseButton {
+    cursor: pointer;
+    border: #747369 2px solid;
+    width: 20px;
+    padding: 5px;
+    text-align: center;
+    margin-bottom: 4px;
+
 }

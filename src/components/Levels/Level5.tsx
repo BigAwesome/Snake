@@ -48,7 +48,7 @@ function Level5(props: IGameProps) {
             snake.move()
             if (typeof size.x === "undefined" || typeof size.y === "undefined") throw new Error("Cant read size")
 
-            if (size.x <= snake.scale || size.y <= snake.scale) {
+            if (size.x * snake.scale <= snake.body.length * snake.scale || size.y * snake.scale <= snake.body.length * snake.scale) {
                 if (props.onComplete)
                     props.onComplete()
                 else throw new Error("Game Over but no screen defined")
