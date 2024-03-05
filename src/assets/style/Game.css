@@ -162,3 +162,12 @@
     margin-bottom: 4px;
 
 }
+
+.AudioWrapper {
+    display: flex;
+    justify-content: end;
+}
+
+.AudioControlls {
+    width: 130px;
+}
