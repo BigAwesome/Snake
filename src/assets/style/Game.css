@@ -129,6 +129,29 @@
 
 }
 
+
+.ButtonWrapper6 {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    /* min-height: 294px; */
+    place-self: center;
+    border: #747369 5px solid;
+    /* border-radius: 10px; */
+}
+
+.ButtonWrapper6 .Button {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    /* padding-top: 50%; */
+    margin: 8%;
+    width: 33%;
+    /* min-height: 76px; */
+
+}
+
 .ButtonWrapper .ButtonWide {
     width: 100%;
     margin: 0%;

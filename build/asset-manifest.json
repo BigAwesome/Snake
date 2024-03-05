@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Snake/build/static/css/main.f1da8dc0.css",
-    "main.js": "/Snake/build/static/js/main.b1faafb8.js",
+    "main.css": "/Snake/build/static/css/main.c61ca7b9.css",
+    "main.js": "/Snake/build/static/js/main.2bbeb3f9.js",
     "static/js/592.09218b42.chunk.js": "/Snake/build/static/js/592.09218b42.chunk.js",
     "static/media/Splash.png": "/Snake/build/static/media/Splash.3d420f4684a04066f15f.png",
     "index.html": "/Snake/build/index.html",
-    "main.f1da8dc0.css.map": "/Snake/build/static/css/main.f1da8dc0.css.map",
-    "main.b1faafb8.js.map": "/Snake/build/static/js/main.b1faafb8.js.map",
+    "main.c61ca7b9.css.map": "/Snake/build/static/css/main.c61ca7b9.css.map",
+    "main.2bbeb3f9.js.map": "/Snake/build/static/js/main.2bbeb3f9.js.map",
     "592.09218b42.chunk.js.map": "/Snake/build/static/js/592.09218b42.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f1da8dc0.css",
-    "static/js/main.b1faafb8.js"
+    "static/css/main.c61ca7b9.css",
+    "static/js/main.2bbeb3f9.js"
   ]
 }
