@@ -1,19 +1,21 @@
-import { useState } from "react"
-import { IGameProps } from "../../interfaces/IGame"
-import Video from "../Video";
+import { IGameProps } from "../../interfaces/IGame";
 
 
 function Level7(props: IGameProps) {
 
     return <>
-        <div className="ButtonWrapper">
-            <div className="Button ButtonWide" onClick={() => { window.location.reload() }}>
-                RELIVE</div>
-        </div >
-        <div className="ButtonWrapper">
-            <div className="Button ButtonWide" onClick={() => { if (props.onComplete) props.onComplete() }}>
-                QUIT</div>
-        </div >
+        <div className="SmallButtonGroup">
+            <div className="SmallButtonWrapper" onClick={() => { window.location.reload() }}>
+                <div className="SmallButton">
+                    RELIVE
+                </div>
+            </div>
+            <div className="SmallButtonWrapper" onClick={() => { if (props.onComplete) props.onComplete() }}>
+                <div className="SmallButton">
+                    QUIT
+                </div>
+            </div>
+        </div>
     </>
 }
 

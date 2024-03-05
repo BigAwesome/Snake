@@ -2,7 +2,8 @@ import { IAudioProps } from "../../interfaces/IAudio";
 
 export function Audio(props: IAudioProps) {
 
-    if (typeof props.url === "undefined" || props.url === null) return <></>
+    console.log(props.url);
+    if (typeof props.url === "undefined" || props.url === null || props.url === "") return <div></div>
 
     return (
         <div className="AudioWrapper">

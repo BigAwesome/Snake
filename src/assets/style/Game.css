@@ -149,9 +149,25 @@
     vertical-align: middle;
 }
 
-.SmallButton {
-    min-height: unset;
+
+.SmallButtonGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+.SmallButtonWrapper {
+    place-self: center;
+    vertical-align: middle;
+    padding: 40px;
+    margin: 20px;
+    width: 33%;
+    border: #747369 5px solid;
+    cursor: pointer;
+    text-align: center;
+}
+
+.SmallButton {}
 
 .CloseButton {
     cursor: pointer;
@@ -159,6 +175,7 @@
     width: 20px;
     padding: 5px;
     text-align: center;
+    vertical-align: middle;
     margin-bottom: 4px;
 
 }

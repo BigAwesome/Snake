@@ -36,7 +36,7 @@ function GameLoader(props: IGameLoaderProps) {
         if (video)
             return <Video game={props.game} level={level} trys={trys} setVideo={setVideo} url={VideoUrl} />
         return <div id="GameWrapper" key={level + " " + trys} className={" Level" + level}>
-            <div className="LevelLabel" onClick={() => setLevel(level + 1)}>Level {level}</div>
+            <div className="LevelLabel">Level {level}</div>
             <Game {...settings} />
             <Audio url={AudioUrl}></Audio>
         </div>
